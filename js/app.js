@@ -13,19 +13,19 @@ function Product(name, filepath, clicks, views) {
 
 new Product('bag', 'img/bag.jpg', 1,1);
 new Product('banana', 'img/banana.jpg', 1,1);
-new Product('bathroom', 'img/bathroomljpg', 1,1);
+new Product('bathroom', 'img/bathroom.jpg', 1,1);
 new Product('boots', 'img/boots.jpg', 1,1);
 new Product('breakfast', 'img/breakfast.jpg', 1, 1);
 new Product('bubblegum', 'img/bubblegum.jpg', 1, 1);
 new Product('chair', 'img/chair.jpg', 1, 1);
-new Product('cthulu', 'img/cthulu.jpg', 1, 1);
-new Product('dog-duck', 'dog-duck.jpg', 1, 1);
+new Product('cthulu', 'img/cthulhu.jpg', 1, 1);
+new Product('dog-duck', 'img/dog-duck.jpg', 1, 1);
 new Product('dragon', 'img/dragon.jpg', 1,1);
 new Product('pen', 'img/pen.jpg', 1, 1);
-new Product('pet-sweep', 'img/petsweep.jpg', 1,1);
+new Product('pet-sweep', 'img/pet-sweep.jpg', 1,1);
 new Product ('scissors', 'img/scissors.jpg', 1, 1);
 new Product('shark', 'img/shark.jpg', 1,1);
-new Product('sweep', 'img/sweep.jpg', 1,1);
+new Product('sweep', 'img/sweep.png', 1,1);
 new Product('tauntaun', 'img/tauntaun.jpg', 1, 1);
 new Product('unicorn', 'img/unicorn.jpg', 1, 1);
 new Product('usb', 'img/usb.gif', 1, 1);
@@ -42,6 +42,12 @@ function showProd(i){
     prodPic.src = Product.allProducts[i].filepath;
     //prodPic.alt = allProducts[i].clicks;
     //prodPic.title = allProducts[i].views;
-    //console.log(Product.allProducts[i].filepath);
-    console.log(prodPic.src);
+    //console.log(prodPic.src);
 };
+
+function randomProd(){
+    var randomProd = Math.floor(Math.random() * Product.allProducts.length);
+    prodPic.src = Product.allProducts[randomProd].filepath;
+}
+//randomProd();
+images.addEventListener('click', randomProd);
