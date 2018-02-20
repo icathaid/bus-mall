@@ -2,8 +2,13 @@
 function pol(){
     alert('proof of life');
 }
+
 var allProducts = [];
 var clickCount = 0; 
+var placeHolderA = 0;
+var placeHolderB = 0;
+var placeHolderC = 0;
+
 function Product(name, filepath, clicks, views) {
     this.name = name;
     this.filepath = filepath;
@@ -11,7 +16,6 @@ function Product(name, filepath, clicks, views) {
     this.views = views;
     allProducts.push(this);
 };
-
 
 new Product('bag', 'img/bag.jpg', 0, 0);
 new Product('banana', 'img/banana.jpg', 0, 0);
@@ -35,45 +39,46 @@ new Product('water-can', 'img/water-can.jpg', 0, 0);
 new Product('wine-glass', 'img/wine-glass.jpg', 0, 0);
 
 
-
-//for expediency/testing, cliucks points to prodPic.alt and views points to prodPic.title
-//randomness is not generated yet, I am manually feeding it an index via the showProd() func
-
-
 function randomProd(){
-    var randomProdA = Math.floor(Math.random() * allProducts.length);
-    var randomProdB = Math.floor(Math.random() * allProducts.length);
-    var randomProdC = Math.floor(Math.random() * allProducts.length);
-    if (randomProdA === randomProdB || randomProdA === randomProdC || randomProdB === randomProdC){
-        randomProd();
-    } else {
-        prodPicA.src = allProducts[randomProdA].filepath;
-        allProducts[randomProdA].views +=1;
-        console.log(allProducts[randomProdA].name + ' views: ' + allProducts[randomProdA].views)
-        prodPicB.src = allProducts[randomProdB].filepath;
-        allProducts[randomProdB].views +=1;
-        console.log(allProducts[randomProdB].name + ' views: ' + allProducts[randomProdB].views)
-        prodPicC.src = allProducts[randomProdC].filepath;
-        allProducts[randomProdC].views +=1;
-        console.log(allProducts[randomProdC].name + ' views: ' + allProducts[randomProdC].views)
-    };
+    if (clickCount < 25){
+        var randomProdA = Math.floor(Math.random() * allProducts.length);
+        var randomProdB = Math.floor(Math.random() * allProducts.length);
+        var randomProdC = Math.floor(Math.random() * allProducts.length);
+        if (randomProdA !== randomProdB && randomProdA !== randomProdC && randomProdB !== randomProdC){
+            prodPicA.src = allProducts[randomProdA].filepath;
+            allProducts[randomProdA].views +=1;
+            placeHolderA = randomProdA;
 
-}
-images.addEventListener('click', checkCount);
+            prodPicB.src = allProducts[randomProdB].filepath;
+            allProducts[randomProdB].views +=1;
+            placeHolderB = randomProdB;
 
-function checkCount(){
-    if (clickCount < 25) {
-        clickCount +=1;
-        randomProd();
+            prodPicC.src = allProducts[randomProdC].filepath;
+            allProducts[randomProdC].views +=1;
+            placeHolderC = randomProdC;
+
+            clickCount +=1;
+        } else {
+            randomProd();
+        };
     } else {
-        return alert('25 clicks!');
-    }
-};
+            for (var i = 0; i < allProducts.length; i++){
+                console.log(allProducts[i].name + ' was clicked ' + allProducts[i].clicks + ' times out of ' + allProducts[i].views + ' views.');
+            };
+            return alert('25 clicks');
+        };
+    };       
+
+function tallyVotesA(){allProducts[placeHolderA].clicks +=1;};
+function tallyVotesB(){allProducts[placeHolderB].clicks +=1;};
+function tallyVotesC(){allProducts[placeHolderC].clicks +=1;};
+
 randomProd();
-prodPicA.addEventListener('click', testA);
-prodPicB.addEventListener('click', pol);
-prodPicC.addEventListener('click', pol);
 
-function testA(){
+images.addEventListener('click', randomProd);
+images.addEventListener('click', randomProd);
+images.addEventListener('click', randomProd);
+prodPicA.addEventListener('click', tallyVotesA);
+prodPicB.addEventListener('click', tallyVotesB);
+prodPicC.addEventListener('click', tallyVotesC);
 
-};
