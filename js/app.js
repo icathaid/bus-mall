@@ -1,4 +1,5 @@
 Product.allProducts = [];
+var clickCount = 0;
 
 //var prodPic = document.getElementById=("prodPic");
 
@@ -37,7 +38,7 @@ new Product('wine-glass', 'img/wine-glass.jpg', 1, 1);
 //for expediency/testing, cliucks points to prodPic.alt and views points to prodPic.title
 //randomness is not generated yet, I am manually feeding it an index via the showProd() func
 
-
+//builder function
 function showProd(i){
     prodPic.src = Product.allProducts[i].filepath;
     //prodPic.alt = allProducts[i].clicks;
@@ -50,4 +51,16 @@ function randomProd(){
     prodPic.src = Product.allProducts[randomProd].filepath;
 }
 //randomProd();
-images.addEventListener('click', randomProd);
+images.addEventListener('click', drawPage);
+//randomProd();
+
+//these variables are confusingly named, but i needed to put the click counter in a separate function to prevent it from logging the initial page load as a click.
+//the randomProd() function will probably later have to be put inside another function and I will restructure this then.
+
+function drawPage(){
+    randomProd();
+    clickCount +=1;
+    console.log('clickCount: ' + clickCount);
+};
+
+randomProd();
