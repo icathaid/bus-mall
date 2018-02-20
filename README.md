@@ -8,3 +8,5 @@ added randomizer and event listener.  by default, the container is invisible and
 duh.  never called the function in the script.
 
 added clickcounter, pushing commits before going further.
+
+added conditional function to limit to 25 clicks, now I need to make this into three images :/  pushing commits before going back to html side
