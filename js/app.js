@@ -2,13 +2,14 @@
 function pol(){
     alert('proof of life');
 }
-
+//-=-=-=-=-=-=-=-vars
 var allProducts = [];
+var prodBox = [];
 var clickCount = 0; 
 var placeHolderA = 0;
 var placeHolderB = 0;
 var placeHolderC = 0;
-
+//-=-=-=-=-=-=-=-constructor function
 function Product(name, filepath, clicks, views) {
     this.name = name;
     this.filepath = filepath;
@@ -16,7 +17,7 @@ function Product(name, filepath, clicks, views) {
     this.views = views;
     allProducts.push(this);
 };
-
+//-=-=-=-=-=-WRAP THIS IN A BIG ASS FOR LOOP-=-=-=-=-=-=-
 new Product('bag', 'img/bag.jpg', 0, 0);
 new Product('banana', 'img/banana.jpg', 0, 0);
 new Product('bathroom', 'img/bathroom.jpg', 0, 0);
@@ -38,47 +39,61 @@ new Product('usb', 'img/usb.gif', 0, 0);
 new Product('water-can', 'img/water-can.jpg', 0, 0);
 new Product('wine-glass', 'img/wine-glass.jpg', 0, 0);
 
-
-function randomProd(){
-    if (clickCount < 25){
-        var randomProdA = Math.floor(Math.random() * allProducts.length);
-        var randomProdB = Math.floor(Math.random() * allProducts.length);
-        var randomProdC = Math.floor(Math.random() * allProducts.length);
-        if (randomProdA !== randomProdB && randomProdA !== randomProdC && randomProdB !== randomProdC){
-            prodPicA.src = allProducts[randomProdA].filepath;
-            allProducts[randomProdA].views +=1;
-            placeHolderA = randomProdA;
-
-            prodPicB.src = allProducts[randomProdB].filepath;
-            allProducts[randomProdB].views +=1;
-            placeHolderB = randomProdB;
-
-            prodPicC.src = allProducts[randomProdC].filepath;
-            allProducts[randomProdC].views +=1;
-            placeHolderC = randomProdC;
-
-            clickCount +=1;
-        } else {
-            randomProd();
-        };
-    } else {
-            for (var i = 0; i < allProducts.length; i++){
-                console.log(allProducts[i].name + ' was clicked ' + allProducts[i].clicks + ' times out of ' + allProducts[i].views + ' views.');
-            };
-            return alert('25 clicks');
-        };
-    };       
-
-function tallyVotesA(){allProducts[placeHolderA].clicks +=1;};
-function tallyVotesB(){allProducts[placeHolderB].clicks +=1;};
-function tallyVotesC(){allProducts[placeHolderC].clicks +=1;};
-
-randomProd();
-
-images.addEventListener('click', randomProd);
-images.addEventListener('click', randomProd);
-images.addEventListener('click', randomProd);
+//event listeners
+//move these down somewhere else
+images.addEventListener('click', letsGo);
 prodPicA.addEventListener('click', tallyVotesA);
 prodPicB.addEventListener('click', tallyVotesB);
 prodPicC.addEventListener('click', tallyVotesC);
 
+//this runs on page load to fill up prodBox with 6 unique numbers
+for (var i = 0; i < 6; i++){
+    makeRandomProd();
+};
+function makeRandomProd(){
+    var randomProd = Math.floor(Math.random() * allProducts.length);
+    if (prodBox.includes(randomProd)){
+        makeRandomProd();
+    } else {
+        prodBox.push(randomProd);
+        if (prodBox.length > 6){
+            prodBox.shift();
+            //console.log(prodBox);
+        };
+    };
+};
+//this removes the first 3 numbers of the prodBox array, bringing the next 3 non-duplicated numbers to the front, and replacing them with 3 new non-duplicated numbers.
+function newProds(){
+    for (var j = 0; j < 3; j++){
+        makeRandomProd();
+    }
+    //console.log(prodBox);
+};
+//-=-=-=-=-draw the first three images and log that they were viewed:
+prodPicA.src = allProducts[prodBox[0]].filepath;
+allProducts[prodBox[0]].views +=1;
+prodPicB.src = allProducts[prodBox[1]].filepath;
+allProducts[prodBox[1]].views +=1;
+prodPicC.src = allProducts[prodBox[2]].filepath;
+allProducts[prodBox[2]].views +=1;
+
+//-=-=-=-=-draw three new images and log that each was viewed:
+function letsGo(){
+    if (clickCount < 25){
+        newProds();
+        prodPicA.src = allProducts[prodBox[0]].filepath;
+        allProducts[prodBox[0]].views +=1;
+        prodPicB.src = allProducts[prodBox[1]].filepath;
+        allProducts[prodBox[1]].views +=1;
+        prodPicC.src = allProducts[prodBox[2]].filepath;
+        allProducts[prodBox[2]].views +=1;
+        clickCount +=1;
+    } else {
+        console.table(allProducts);
+        return alert('25 clicks!'); 
+    };
+};
+//-=-=-=-=-=-=-Perhaps my only well-named function, this tallies votes.
+function tallyVotesA(){allProducts[prodBox[0]].clicks +=1;};
+function tallyVotesB(){allProducts[prodBox[1]].clicks +=1;};
+function tallyVotesC(){allProducts[prodBox[2]].clicks +=1;};
