@@ -47,8 +47,17 @@ function showProd(i){
 };
 
 function randomProd(){
-    var randomProd = Math.floor(Math.random() * Product.allProducts.length);
-    prodPic.src = Product.allProducts[randomProd].filepath;
+    var randomProdA = Math.floor(Math.random() * Product.allProducts.length);
+    var randomProdB = Math.floor(Math.random() * Product.allProducts.length);
+    var randomProdC = Math.floor(Math.random() * Product.allProducts.length);
+    if (randomProdA === randomProdB || randomProdA === randomProdC || randomProdB === randomProdC){
+        randomProd();
+    } else {
+        prodPicA.src = Product.allProducts[randomProdA].filepath;
+        prodPicB.src = Product.allProducts[randomProdB].filepath;
+        prodPicC.src = Product.allProducts[randomProdC].filepath;
+    };
+    
 }
 //randomProd();
 images.addEventListener('click', checkCount);

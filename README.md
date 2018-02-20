@@ -10,3 +10,8 @@ duh.  never called the function in the script.
 added clickcounter, pushing commits before going further.
 
 added conditional function to limit to 25 clicks, now I need to make this into three images :/  pushing commits before going back to html side
+
+added a second picture and a conditional to make sure they aren't the same picture.  worked on the first try.  growing suspicious.
+
+added third pic, pushing commits and then i have a bus to catch.
+
