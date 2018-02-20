@@ -6,9 +6,6 @@ function pol(){
 var allProducts = [];
 var prodBox = [];
 var clickCount = 0; 
-var placeHolderA = 0;
-var placeHolderB = 0;
-var placeHolderC = 0;
 //-=-=-=-=-=-=-=-constructor function
 function Product(name, filepath, clicks, views) {
     this.name = name;
@@ -40,7 +37,6 @@ new Product('water-can', 'img/water-can.jpg', 0, 0);
 new Product('wine-glass', 'img/wine-glass.jpg', 0, 0);
 
 //event listeners
-//move these down somewhere else
 images.addEventListener('click', letsGo);
 prodPicA.addEventListener('click', tallyVotesA);
 prodPicB.addEventListener('click', tallyVotesB);
@@ -90,6 +86,10 @@ function letsGo(){
         clickCount +=1;
     } else {
         console.table(allProducts);
+        images.removeEventListener('click', letsGo);
+        prodPicA.removeEventListener('click', tallyVotesA);
+        prodPicB.removeEventListener('click', tallyVotesB);
+        prodPicC.removeEventListener('click', tallyVotesC);
         return alert('25 clicks!'); 
     };
 };
@@ -97,3 +97,4 @@ function letsGo(){
 function tallyVotesA(){allProducts[prodBox[0]].clicks +=1;};
 function tallyVotesB(){allProducts[prodBox[1]].clicks +=1;};
 function tallyVotesC(){allProducts[prodBox[2]].clicks +=1;};
+
