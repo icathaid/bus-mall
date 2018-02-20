@@ -51,16 +51,23 @@ function randomProd(){
     prodPic.src = Product.allProducts[randomProd].filepath;
 }
 //randomProd();
-images.addEventListener('click', drawPage);
+images.addEventListener('click', checkCount);
 //randomProd();
 
 //these variables are confusingly named, but i needed to put the click counter in a separate function to prevent it from logging the initial page load as a click.
 //the randomProd() function will probably later have to be put inside another function and I will restructure this then.
 
+function checkCount(){
+    if (clickCount < 25) {
+        drawPage();
+    } else {
+        return alert('25 clicks!');
+    }
+};
 function drawPage(){
-    randomProd();
+    console.log(clickCount);
     clickCount +=1;
-    console.log('clickCount: ' + clickCount);
+    randomProd();    
 };
 
 randomProd();
