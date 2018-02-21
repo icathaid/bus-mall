@@ -6,7 +6,19 @@ function pol(){
 var allProducts = [];
 var prodBox = [];
 var clickCount = 0; 
-//-=-=-=-=-=-=-=-constructor function
+var votes = [];
+var crap = [];
+var crapChart;
+var chartDrawn = false;
+var data = {
+        labels: crap,
+        datasets: [{
+            data: votes,
+            label: 'bill',
+            backgroundColor: 'navy',
+        }]
+    };
+//-=-=-=-=-=-=-=-constructor functions
 function Product(name, filepath, clicks, views) {
     this.name = name;
     this.filepath = filepath;
@@ -14,6 +26,22 @@ function Product(name, filepath, clicks, views) {
     this.views = views;
     allProducts.push(this);
 };
+//-=-=-=-=-this kind of works, leaving it here as a template for other functions
+//build out other kinds of graphs until you figure out what part of the syntax you're fucking up
+function makeChart(){
+    var ctx = document.getElementById('crapChart').getContext('2d');
+    crapChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+          responsive: false,
+          legend: {display: true}, 
+          title: {display: true, text: 'this is my title'}
+        },
+      });
+      chartDrawn = true;
+    }
+
 //-=-=-=-=-=-WRAP THIS IN A BIG ASS FOR LOOP-=-=-=-=-=-=-
 new Product('bag', 'img/bag.jpg', 0, 0);
 new Product('banana', 'img/banana.jpg', 0, 0);
@@ -85,16 +113,34 @@ function letsGo(){
         allProducts[prodBox[2]].views +=1;
         clickCount +=1;
     } else {
-        console.table(allProducts);
+        //console.table(allProducts);
         images.removeEventListener('click', letsGo);
         prodPicA.removeEventListener('click', tallyVotesA);
         prodPicB.removeEventListener('click', tallyVotesB);
         prodPicC.removeEventListener('click', tallyVotesC);
-        return alert('25 clicks!'); 
+        countAllVotes();
+        alert(clickCount);
+        return makeChart(); 
+        //window.location.href = 'chart.html';
     };
 };
+
 //-=-=-=-=-=-=-Perhaps my only well-named function, this tallies votes.
 function tallyVotesA(){allProducts[prodBox[0]].clicks +=1;};
 function tallyVotesB(){allProducts[prodBox[1]].clicks +=1;};
 function tallyVotesC(){allProducts[prodBox[2]].clicks +=1;};
 
+//-=-=-=-=-=-=-fills arrays for chart
+function countAllVotes(){
+    for (var i = 0; i < allProducts.length; i++){
+        votes[i] = allProducts[i].clicks;
+        crap[i] = allProducts[i].name;
+    }
+};
+
+//-=-=-=-=-test function
+function showVotes(){
+    for (var i = 0; i < allProducts.length; i++){
+        console.log('Product: ' + crap[i] + ' Votes: ' + votes[i]);
+    }
+};
