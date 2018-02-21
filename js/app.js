@@ -15,11 +15,11 @@ var data = {
         datasets: [{
             data: votes,
             label: 'bill',
-            backgroundColor: 'navy',
+            backgroundColor: ['navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red'],
         }]
     };
 //-=-=-=-=-=-=-=-constructor functions
-function Product(name, filepath, clicks, views) {
+function Product(name, filepath, clicks, views, percentage) {
     this.name = name;
     this.filepath = filepath;
     this.clicks = clicks;
@@ -42,7 +42,7 @@ function makeChart(){
       chartDrawn = true;
     }
 
-//-=-=-=-=-=-WRAP THIS IN A BIG ASS FOR LOOP-=-=-=-=-=-=-
+//-=-=-=-=-=-WRAP THIS IN A FOR LOOP-=-=-=-=-=-=-
 new Product('bag', 'img/bag.jpg', 0, 0);
 new Product('banana', 'img/banana.jpg', 0, 0);
 new Product('bathroom', 'img/bathroom.jpg', 0, 0);
@@ -119,7 +119,9 @@ function letsGo(){
         prodPicB.removeEventListener('click', tallyVotesB);
         prodPicC.removeEventListener('click', tallyVotesC);
         countAllVotes();
-        alert(clickCount);
+        alert(clickCount + ' clicks!');
+        calcPercentage();
+        console.table(allProducts);
         return makeChart(); 
         //window.location.href = 'chart.html';
     };
@@ -143,4 +145,9 @@ function showVotes(){
     for (var i = 0; i < allProducts.length; i++){
         console.log('Product: ' + crap[i] + ' Votes: ' + votes[i]);
     }
+};
+function calcPercentage(){
+    for (var i = 0; i < allProducts.length; i++){
+        allProducts[i].percentage = allProducts[i].clicks / allProducts[i].views;
+    };
 };
