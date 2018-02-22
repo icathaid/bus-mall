@@ -2,10 +2,14 @@
 function pol(){
     alert('proof of life');
 }
+//-=-=-=-=-=-=-=-test
+
+
 //-=-=-=-=-=-=-=-vars
 var allProducts = [];
 var prodBox = [];
 var clickCount = 0; 
+var stuff = [];
 var votes = [];
 var crap = [];
 var crapChart;
@@ -20,7 +24,7 @@ var data = {
     };
 //-=-=-=-=-=-=-=-constructor functions
 function Product(name, filepath, clicks, views, percentage) {
-    this.name = name;
+    this.name = name;var thing2 = [];var thing2 = [];
     this.filepath = filepath;
     this.clicks = clicks;
     this.views = views;
@@ -126,7 +130,7 @@ function letsGo(){
         //window.location.href = 'chart.html';
     };
 };
-
+    
 //-=-=-=-=-=-=-Perhaps my only well-named function, this tallies votes.
 function tallyVotesA(){allProducts[prodBox[0]].clicks +=1;};
 function tallyVotesB(){allProducts[prodBox[1]].clicks +=1;};
@@ -139,6 +143,14 @@ function countAllVotes(){
         crap[i] = allProducts[i].name;
     }
 };
+//-=-=-=-=-=- hey let's store that same data locally
+function tester(){
+    for (var i = 0; i < votes.length; i++){
+        localStorage.setItem("votes: ", votes[i]);
+    };
+    console.table(votes);
+};
+    
 
 //-=-=-=-=-test function
 function showVotes(){
@@ -151,3 +163,17 @@ function calcPercentage(){
         allProducts[i].percentage = allProducts[i].clicks / allProducts[i].views;
     };
 };
+//-=-=-=-=-=----test function
+function doshit(){
+    if (localStorage.getItem("bill")){
+        console.log('bill exists');
+        var ted = parseInt(localStorage.getItem("bill"));
+        console.log('bill: ' + localStorage.getItem("bill"));
+        console.log(ted);
+        ted +=1;
+        localStorage.setItem("bill", ted);
+    } else {
+        localStorage.setItem("bill", "0");
+    }
+};
+//-=-=-=-=-=-=-=-test function
