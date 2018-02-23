@@ -27,3 +27,5 @@ got basic graph up and running, pushing commits, will flesh out web site later
 
 
 did i ever add a license and a jsoneslintrc?
+
+slowly slogging through local storage.  it will record clicks and views to local storage, will experiment with loading it onto another page with my graph later.  I think I have enough to go on to get a little further on the order form lab, so shifting focus back to that for a while.
