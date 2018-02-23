@@ -155,17 +155,6 @@ function countAllVotes(){
         crap[i] = allProducts[i].name;
     }
 };
-//-=-=-=-=-=- hey let's store that same data locally
-function testy (){
-    var tester = ['a', 'b', 4];
-    localStorage.setItem("testkey", JSON.stringify(tester));
-    var test = JSON.parse(localStorage.getItem("testkey"));
-    alert(test);
-};
-//spent 5 minutes figuring out what stumped me for 2 hours last night.  sleep is a wonderful thing.
-
-    
-
 //-=-=-=-=-test function
 function showVotes(){
     for (var i = 0; i < allProducts.length; i++){
