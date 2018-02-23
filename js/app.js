@@ -3,7 +3,7 @@ function pol(){
     alert('proof of life');
 }
 //-=-=-=-=-=-=-=-test
-
+//pullData();
 
 //-=-=-=-=-=-=-=-vars
 var allProducts = [];
@@ -67,7 +67,7 @@ new Product('unicorn', 'img/unicorn.jpg', 0, 0);
 new Product('usb', 'img/usb.gif', 0, 0);
 new Product('water-can', 'img/water-can.jpg', 0, 0);
 new Product('wine-glass', 'img/wine-glass.jpg', 0, 0);
-
+checkLocalStorage();
 //event listeners
 images.addEventListener('click', letsGo);
 prodPicA.addEventListener('click', tallyVotesA);
@@ -123,9 +123,10 @@ function letsGo(){
         prodPicB.removeEventListener('click', tallyVotesB);
         prodPicC.removeEventListener('click', tallyVotesC);
         countAllVotes();
-        alert(clickCount + ' clicks!');
+        //alert(clickCount + ' clicks!');
         calcPercentage();
         console.table(allProducts);
+        localStorage.setItem('allProducts', JSON.stringify(allProducts));
         return makeChart(); 
         //window.location.href = 'chart.html';
     };
@@ -135,6 +136,17 @@ function letsGo(){
 function tallyVotesA(){allProducts[prodBox[0]].clicks +=1;};
 function tallyVotesB(){allProducts[prodBox[1]].clicks +=1;};
 function tallyVotesC(){allProducts[prodBox[2]].clicks +=1;};
+//add function to each of these lines ^^^ to update local storage
+//then add function to check if local storage exists and/or set it up
+//figure out how to store an array of objects instead of coding this whole god damn thing
+
+function checkLocalStorage(){
+    if (!localStorage.allProducts){
+        localStorage.setItem('allProducts', JSON.stringify(allProducts));
+    } else {
+        allProducts = JSON.parse(localStorage.getItem('allProducts'));
+    };
+};
 
 //-=-=-=-=-=-=-fills arrays for chart
 function countAllVotes(){
@@ -144,12 +156,14 @@ function countAllVotes(){
     }
 };
 //-=-=-=-=-=- hey let's store that same data locally
-function tester(){
-    for (var i = 0; i < votes.length; i++){
-        localStorage.setItem("votes: ", votes[i]);
-    };
-    console.table(votes);
+function testy (){
+    var tester = ['a', 'b', 4];
+    localStorage.setItem("testkey", JSON.stringify(tester));
+    var test = JSON.parse(localStorage.getItem("testkey"));
+    alert(test);
 };
+//spent 5 minutes figuring out what stumped me for 2 hours last night.  sleep is a wonderful thing.
+
     
 
 //-=-=-=-=-test function
@@ -177,3 +191,7 @@ function doshit(){
     }
 };
 //-=-=-=-=-=-=-=-test function
+
+//if local storage exists else loop through allproducts and newproduct
+
+//product.all = json.parse(localstorage.busmall)
