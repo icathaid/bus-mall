@@ -24,3 +24,6 @@ background colors not showing up
 
 got basic graph up and running, pushing commits, will flesh out web site later
 
+
+
+did i ever add a license and a jsoneslintrc?
