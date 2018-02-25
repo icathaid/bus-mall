@@ -18,55 +18,45 @@ var data = {
         labels: crap,
         datasets: [{
             data: votes,
-            label: 'bill',
+            label: 'Votes',
             backgroundColor: ['navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red'],
         }]
     };
 //-=-=-=-=-=-=-=-constructor functions
-function Product(name, filepath, clicks, views, percentage) {
-    this.name = name;var thing2 = [];var thing2 = [];
+function Product(name, filepath, title, clicks, views, percentage) {
+    this.name = name;
     this.filepath = filepath;
+    this.title = title;
     this.clicks = clicks;
     this.views = views;
     allProducts.push(this);
 };
+
 //-=-=-=-=-this kind of works, leaving it here as a template for other functions
 //build out other kinds of graphs until you figure out what part of the syntax you're fucking up
-function makeChart(){
-    var ctx = document.getElementById('crapChart').getContext('2d');
-    crapChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-          responsive: false,
-          legend: {display: true}, 
-          title: {display: true, text: 'this is my title'}
-        },
-      });
-      chartDrawn = true;
-    }
+
 
 //-=-=-=-=-=-WRAP THIS IN A FOR LOOP-=-=-=-=-=-=-
-new Product('bag', 'img/bag.jpg', 0, 0);
-new Product('banana', 'img/banana.jpg', 0, 0);
-new Product('bathroom', 'img/bathroom.jpg', 0, 0);
-new Product('boots', 'img/boots.jpg', 0, 0);
-new Product('breakfast', 'img/breakfast.jpg', 0, 0);
-new Product('bubblegum', 'img/bubblegum.jpg', 0, 0);
-new Product('chair', 'img/chair.jpg', 0, 0);
-new Product('cthulu', 'img/cthulhu.jpg', 0, 0);
-new Product('dog-duck', 'img/dog-duck.jpg', 0, 0);
-new Product('dragon', 'img/dragon.jpg', 0, 0);
-new Product('pen', 'img/pen.jpg', 0, 0);
-new Product('pet-sweep', 'img/pet-sweep.jpg', 0, 0);
-new Product('scissors', 'img/scissors.jpg', 0, 0);
-new Product('shark', 'img/shark.jpg', 0, 0);
-new Product('sweep', 'img/sweep.png', 0, 0);
-new Product('tauntaun', 'img/tauntaun.jpg', 0, 0);
-new Product('unicorn', 'img/unicorn.jpg', 0, 0);
-new Product('usb', 'img/usb.gif', 0, 0);
-new Product('water-can', 'img/water-can.jpg', 0, 0);
-new Product('wine-glass', 'img/wine-glass.jpg', 0, 0);
+new Product('bag', 'img/bag.jpg', 'R2D2 Luggage', 0, 0);
+new Product('banana', 'img/banana.jpg', 'Banana Slicer', 0, 0);
+new Product('bathroom', 'img/bathroom.jpg', 'Toilet Paper Tablet Holder', 0, 0);
+new Product('boots', 'img/boots.jpg', 'Open-toed Rain Boots', 0, 0);
+new Product('breakfast', 'img/breakfast.jpg', 'All-in-One Breakfast Making Station', 0, 0);
+new Product('bubblegum', 'img/bubblegum.jpg', 'Meatball Bubble Gum', 0, 0);
+new Product('chair', 'img/chair.jpg', 'The world\'s least comfortable chair', 0, 0);
+new Product('cthulu', 'img/cthulhu.jpg', 'The Destroyer of Worlds', 0, 0);
+new Product('dog-duck', 'img/dog-duck.jpg','Duck Bill for your Dog', 0, 0);
+new Product('dragon', 'img/dragon.jpg', 'Dragon Meat', 0, 0);
+new Product('pen', 'img/pen.jpg', 'Pentencils', 0, 0);
+new Product('pet-sweep', 'img/pet-sweep.jpg', 'Pet Sweeper', 0, 0);
+new Product('scissors', 'img/scissors.jpg', 'Pizza Scissors', 0, 0);
+new Product('shark', 'img/shark.jpg', 'Shark Sleeping Bag', 0, 0);
+new Product('sweep', 'img/sweep.png', 'Baby Sweeper', 0, 0);
+new Product('tauntaun', 'img/tauntaun.jpg', 'TaunTaun Sleeping Bag', 0, 0);
+new Product('unicorn', 'img/unicorn.jpg', 'True story - I have owned this actual product.  I bought it when drunk and left it in my cupboard as a joke for my First Sergeant to find during barracks inspections.', 0, 0);
+new Product('usb', 'img/usb.gif', 'Monster Tail USB Drive', 0, 0);
+new Product('water-can', 'img/water-can.jpg', 'Self-Watering Watering Can', 0, 0);
+new Product('wine-glass', 'img/wine-glass.jpg', 'Pythagorean Wine Glass', 0, 0);
 checkLocalStorage();
 //event listeners
 images.addEventListener('click', letsGo);
@@ -99,10 +89,13 @@ function newProds(){
 };
 //-=-=-=-=-draw the first three images and log that they were viewed:
 prodPicA.src = allProducts[prodBox[0]].filepath;
+prodPicA.title = allProducts[prodBox[0]].title;
 allProducts[prodBox[0]].views +=1;
 prodPicB.src = allProducts[prodBox[1]].filepath;
+prodPicB.title = allProducts[prodBox[1]].title;
 allProducts[prodBox[1]].views +=1;
 prodPicC.src = allProducts[prodBox[2]].filepath;
+prodPicC.title = allProducts[prodBox[2]].title;
 allProducts[prodBox[2]].views +=1;
 
 //-=-=-=-=-draw three new images and log that each was viewed:
@@ -110,10 +103,13 @@ function letsGo(){
     if (clickCount < 25){
         newProds();
         prodPicA.src = allProducts[prodBox[0]].filepath;
+        prodPicA.title = allProducts[prodBox[0]].title;
         allProducts[prodBox[0]].views +=1;
         prodPicB.src = allProducts[prodBox[1]].filepath;
+        prodPicB.title = allProducts[prodBox[1]].title;
         allProducts[prodBox[1]].views +=1;
         prodPicC.src = allProducts[prodBox[2]].filepath;
+        prodPicC.title = allProducts[prodBox[2]].title;
         allProducts[prodBox[2]].views +=1;
         clickCount +=1;
     } else {
@@ -127,8 +123,7 @@ function letsGo(){
         calcPercentage();
         console.table(allProducts);
         localStorage.setItem('allProducts', JSON.stringify(allProducts));
-        return makeChart(); 
-        //window.location.href = 'chart.html';
+        return location.href = 'page2.html';
     };
 };
     

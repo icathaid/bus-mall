@@ -1,7 +1,48 @@
-main {
-    width: 960px;
+body {
+    background-color: rgb(20, 22, 19);
 }
-img {
+main {
+    background-color: rgb(62, 62, 68);
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+h1 {
+    color: rgb(136, 124, 91);
+    margin-top: 25px;
+    padding-top: 35px;
+    padding-bottom: 10px;
+    width: 960px;
+    text-align: center;
+}
+#hero {
+    display: block;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+.prodPic {
+    display: inline-block;
+    text-align: center;
     width: 200px;
-    float: left;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 15px;
+    border-radius: 125px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 75px;
+    vertical-align: center;
+}
+p {
+    width: 900px;
+    text-indent: 30px;
+    text-align: left;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
