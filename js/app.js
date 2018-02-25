@@ -108,7 +108,6 @@ function letsGo(){
         return location.href = 'page2.html';
     };
 };
-    
 function tallyVotesA(){allProducts[prodBox[0]].clicks +=1;};
 function tallyVotesB(){allProducts[prodBox[1]].clicks +=1;};
 function tallyVotesC(){allProducts[prodBox[2]].clicks +=1;};

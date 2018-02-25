@@ -3,17 +3,23 @@ body {
 }
 main {
     background-color: rgb(62, 62, 68);
+    color: rgb(165, 163, 61);
     width: 960px;
+    font-size: 16pt;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 h1 {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
     color: rgb(136, 124, 91);
+    font-family: 'Cinzel', serif;
+    font-size: 34pt;
     margin-top: 25px;
     padding-top: 35px;
     padding-bottom: 10px;
-    width: 960px;
     text-align: center;
 }
 #hero {
@@ -28,7 +34,7 @@ h1 {
     text-align: center;
     width: 200px;
     border-style: solid;
-    border-color: yellow;
+    border-color: rgb(20, 22, 19);
     border-width: 15px;
     border-radius: 125px;
     margin-left: 25px;
@@ -38,7 +44,8 @@ h1 {
 }
 p {
     width: 900px;
-    text-indent: 30px;
+    font-family: 'Enriqueta', serif;
+    text-indent: 50px;
     text-align: left;
     margin-left: 25px;
     margin-right: 25px;
