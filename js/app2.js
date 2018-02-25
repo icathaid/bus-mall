@@ -1,4 +1,7 @@
-var chartDrawn = false;
+var c1 = 'darkKhaki';
+var c2 = 'dimGray';
+var c3 = 'midnightBlue  ';
+var c4 = 'darkSlateGray';
 var allProducts = JSON.parse(localStorage.getItem('allProducts'));
 var crap = [];
 var votes = [];
@@ -8,7 +11,7 @@ var data = {
     datasets: [{
         data: votes,
         label: 'Votes',
-        backgroundColor: ['navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red', 'navy', 'red'],
+        backgroundColor: [c1, c2, c1, c2, c1, c2, c1, c2, c1, c2, c1, c2, c1, c2, c1, c2, c1, c2, c1, c2],
     }]
 };
 var otherData = {
@@ -16,7 +19,7 @@ var otherData = {
     datasets: [{
         data: rate,
         label: 'Percentage',
-        backgroundColor: ['black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow', 'black', 'yellow'],
+        backgroundColor: [c3, c4, c3, c4, c3, c4, c3, c4, c3, c4, c3, c4, c3, c4, c3, c4, c3, c4, c3, c4],
     }]
 };
 function makeChart(){
@@ -25,21 +28,15 @@ function makeChart(){
         type: 'bar',
         data: data,
         options: {
-          responsive: false,
-          scales: {
-              label: 'label?',
-              xAxes: [{
-                  stacked: true,
-                  ticks: {
-                      autoskip: false,
-                  }
-                }]
+            responsive: false,
+            scales: {
+              label: '',
           },
           legend: {display: false}, 
-          title: {display: true, text: 'this is my title'}
+          title: {display: true, fontColor: 'tan', text: 'Votes per Product'}
+          
         },
       });
-      chartDrawn = true;
     }
 
 function makePercentageChart(){
@@ -55,15 +52,11 @@ function makePercentageChart(){
                 }]
             },
             legend: {display: false},
-            title: {display: true, text: 'this is my other title'}
+            title: {display: true, fontColor: 'tan', text: 'Clicks per View'}
         }
     });
 };
 
-
-
-//need to fill votes and crap with data from local storage
-//will also need to add a variable for views, percentage, etc.
 function makeData(){
     for (var i = 0; i < allProducts.length; i++){
         votes.push(allProducts[i].clicks);
