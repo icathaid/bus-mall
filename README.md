@@ -14,6 +14,11 @@ slowly slogging through local storage.  it will record clicks and views to local
 
 something ridiculous is going on with the width of the second chart...the first chart is a fixed width, the 2nd chart shrinks or expands to fit the width of the browser window...which is weird, because it used to just shoot off to the right, and I have no idea what I changed.
 
-oh cool now i changed them both to a percentage...
+
+
+
 
 add clickcounter for the number of times a user has viewed the page
+
+
+change 2nd chart to pie chart arranged by greatest percentage of clicks to least
